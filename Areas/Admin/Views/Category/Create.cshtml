@@ -1,0 +1,27 @@
+﻿@using Fruitables_MVC.Areas.Admin.ViewModels.Category
+@model CreateCategoryVM
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Kateqoriya Yarat</h4>
+
+                <form class="forms-sample" method="post" asp-action="Create" asp-controller="Category" asp-area="Admin">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Name">Kateqoriya Adı</label>
+                        <input asp-for="Name" class="form-control" placeholder="Ad daxil edin...">
+
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Təsdiqlə</button>
+                    <a asp-action="Index" class="btn btn-light">Ləğv et</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  
