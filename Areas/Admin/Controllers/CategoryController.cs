@@ -21,7 +21,7 @@ namespace Fruitables_MVC.Areas.Admin.Controllers
         {
             IEnumerable<CategoryVM> categories = await _context.Categories
                 .OrderByDescending(m => m.Id)
-                .Where(m => !m.isDeleted)
+                .Where(m => !m.IsDeleted)
                 .Select(m =>new CategoryVM
                 {
                     Id = m.Id,
@@ -48,7 +48,7 @@ namespace Fruitables_MVC.Areas.Admin.Controllers
                 return View(categoryVM);
             }
 
-            bool isExist = await _context.Categories.AnyAsync(m => m.Name == categoryVM.Name && !m.isDeleted);
+            bool isExist = await _context.Categories.AnyAsync(m => m.Name == categoryVM.Name && !m.IsDeleted);
 
             if (isExist)
             {
@@ -72,7 +72,7 @@ namespace Fruitables_MVC.Areas.Admin.Controllers
             if (id == null) return BadRequest();
 
             var category = await _context.Categories
-                .Where(m => !m.isDeleted)
+                .Where(m => !m.IsDeleted)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (category == null) return NotFound();
@@ -96,7 +96,7 @@ namespace Fruitables_MVC.Areas.Admin.Controllers
             var category = await _context.Categories.FindAsync(id);
             if (category == null) return NotFound();
 
-            category.isDeleted = true;
+            category.IsDeleted = true;
 
             await _context.SaveChangesAsync();
 
@@ -109,7 +109,7 @@ namespace Fruitables_MVC.Areas.Admin.Controllers
             if (id == null) return BadRequest();
 
             var category = await _context.Categories
-                .Where(m => !m.isDeleted)
+                .Where(m => !m.IsDeleted)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (category == null) return NotFound();
@@ -136,7 +136,7 @@ namespace Fruitables_MVC.Areas.Admin.Controllers
             }
 
             bool isExist = await _context.Categories
-                .AnyAsync(m => m.Name == categoryVM.Name && m.Id != id && !m.isDeleted);
+                .AnyAsync(m => m.Name == categoryVM.Name && m.Id != id && !m.IsDeleted);
 
             if (isExist)
             {

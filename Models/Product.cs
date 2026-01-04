@@ -8,6 +8,6 @@
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public List<ProductImages> Images { get; set; }
+        public ICollection<ProductImages> Images { get; set; }
     }
 }
